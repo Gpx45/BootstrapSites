@@ -17,10 +17,16 @@
     
 <h1>Hello, world!</h1>
     <div class="container">
-        <div class="row"> <!--wrapper for main home column-->
-            <div class="col-md-12">
-                <div class="homeDiv">
-                
+        <div class="row no-gutters"> <!--wrapper for main home column-->
+            <div class="col-md-8">
+                <div class="homeMainDiv">
+
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="homeSideDiv">
+
                 </div>
             </div>
         </div>
