@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Hello, world!</title>
+    <title>Welcome to Tutoring</title>
     <!-- Required meta tags -->
     <meta charset="UTF-8" />
 	<meta name="description" content="Free Tutoring Online, come sign in and get help right away!" />
@@ -14,23 +14,66 @@
     <link rel="stylesheet" type="text/css" href="styles\styles.css"/>
   </head>
   <body>
-    
-<h1>Hello, world!</h1>
-    <div class="container">
-        <div class="row no-gutters"> <!--wrapper for main home column-->
-            <div class="col-md-8">
-                <div class="homeMainDiv">
 
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <div class="homeSideDiv">
-
-                </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 botHead">        
+            <div class="head botMZ">
+            <div class="headPadding">    
+            <h1 class="text-white"><u>Tutoring Services</u></h1>
+            <p class="lead text-capitalize text-white">face to face online</p>
             </div>
         </div>
+        
     </div>
+
+    
+
+    </div>
+        <div class="row no-gutters"> <!--wrapper for main home column-->
+
+            <div class="col-md-7">
+               
+                <div class="homeMainDiv">
+           <img class="ajustImg img-fluid" src="images\papa2.jpg">
+                </div>
+                 
+            </div>
+
+            <div class="col-md-5">
+                <div class="homeSideDiv">
+                    
+                    <p class="lead weeklyT"><strong>Weekly News</strong></p>
+                    
+                    <p class="small text-justify weekly">The Coding in Academics program is sponsored by the Crockett Foundation. 
+                        The program takes tales place at Broward College's North Campus. 
+                        The program serves students from local middle schools and provives coding classes. 
+                        The coding classes are taughtand monitored by a team consisting of Education Specialist, 
+                        and Coding Professors from Broward College. Students benefit from being exposed to a college campus 
+                        which will serve to inspire their future opportunities, increase their motivation to pursue post-secondary 
+                        education and training, and prompt them to start setting goals for their future early, at an age when these 
+                        decisions are critical to their success in life. 
+                        If you see news happening - Send us a Text and we will post it here.</p>
+                
+                </div>
+           
+            </div>
+        </div>
+
+        <div class="row">
+        <div class="col-md-12 botHead">        
+            <div class="head botMZ">
+            <div class="headPadding">    
+            
+            </div>
+        </div>
+        
+        </div>
+        
+        
+</div>
+
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

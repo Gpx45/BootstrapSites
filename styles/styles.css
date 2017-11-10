@@ -1,9 +1,44 @@
 .homeMainDiv {
-    height: 400px;
-    background-color: blue;
+    height: auto;
+    background-color: rgb(65, 65, 119);
+    
 }
 
 .homeSideDiv {
-    height: 400px;
-    background-color: rgb(136, 255, 0);
+    height: 330px;
+    background-color: #BBBBBB;
+    
+}
+
+.head {
+    height: 100px;
+    background-color: #11233B;
+}
+
+.headPadding {
+    padding-left: 30px;
+}
+
+.botMZ h1 {
+    margin-bottom: 0px;
+}
+
+.botHead {
+    margin-bottom: 1px;
+}
+
+.ajustImg img {
+
+    width: 430px;
+}
+
+.weekly {
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.weeklyT {
+    padding-top: 30px;
+    padding-left: 10px;
 }
