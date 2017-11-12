@@ -1,13 +1,25 @@
 .homeMainDiv {
+    height: 345px;
+    background-color: rgb(251, 251, 253);
+
+}
+
+.homeMainDiv2 {
     height: auto;
-    background-color: rgb(65, 65, 119);
-    
+    background-color: rgb(251, 251, 253);
+
 }
 
 .homeSideDiv {
-    height: 330px;
-    background-color: #BBBBBB;
-    
+    height: 500px;
+    background-color: rgb(238, 238, 238);
+
+}
+
+.homeSideDiv2 {
+    height: 638px;
+    background-color: rgb(238, 238, 238);
+
 }
 
 .head {
@@ -23,22 +35,84 @@
     margin-bottom: 0px;
 }
 
+.botF h1 {
+    margin-bottom: 0px;
+    width: 100%;
+}
+
+
 .botHead {
     margin-bottom: 1px;
 }
 
 .ajustImg img {
 
-    width: 430px;
+    max-width: 100%;
+    max-height: auto;
 }
 
 .weekly {
-    margin-top: 30px;
     margin-left: 10px;
     margin-right: 10px;
 }
 
 .weeklyT {
-    padding-top: 30px;
+    padding-top: 0px;
     padding-left: 10px;
+    display: inline-block;
+}
+
+
+.my-image {
+    background: url(papa2.jpg);
+    background-size: cover; /* will stretch the image to your div size while maintaining aspect ratio */
+}
+
+.img-conf div {
+    background: url("papa2.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.nav-tabs > li.active > a {
+    color: #3c5a78;
+    font-size: 16px;
+
+  }
+  .nav-tabs > li > a {
+    color: #fffefe;
+
+  }
+
+  .nav-tabs {
+      background-color: #11233B;
+  }
+
+  .footerTab {
+    padding-top: 20px;
+
+}
+
+.down-a-bit {
+    padding-bottom: 30px;
+}
+
+.side-a-bit {
+    padding-left: 5px;
+}
+
+.fly-away {
+    float: right;
+}
+
+.bttnFree {
+    margin-bottom: 20px;
+}
+
+.tbPadding {
+    padding-left: 50px;
+}
+
+.tbPaddingDown {
+    margin-bottom: 50px;
 }

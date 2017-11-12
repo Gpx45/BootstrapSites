@@ -15,63 +15,89 @@
   </head>
   <body>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 botHead">        
-            <div class="head botMZ">
-            <div class="headPadding">    
-            <h1 class="text-white"><u>Tutoring Services</u></h1>
-            <p class="lead text-capitalize text-white">face to face online</p>
-            </div>
-        </div>
-        
-    </div>
-
-    
-
-    </div>
-        <div class="row no-gutters"> <!--wrapper for main home column-->
-
-            <div class="col-md-7">
-               
-                <div class="homeMainDiv">
-           <img class="ajustImg img-fluid" src="images\papa2.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 botHead">        
+                <div class="head botMZ">
+                    <div class="headPadding">    
+                        <h1 class="text-white"><u>Tutoring Services</u></h1>
+                        <p class="lead text-capitalize text-white">face to face online</p>
+                    </div>
                 </div>
-                 
-            </div>
-
-            <div class="col-md-5">
-                <div class="homeSideDiv">
-                    
-                    <p class="lead weeklyT"><strong>Weekly News</strong></p>
-                    
-                    <p class="small text-justify weekly">The Coding in Academics program is sponsored by the Crockett Foundation. 
-                        The program takes tales place at Broward College's North Campus. 
-                        The program serves students from local middle schools and provives coding classes. 
-                        The coding classes are taughtand monitored by a team consisting of Education Specialist, 
-                        and Coding Professors from Broward College. Students benefit from being exposed to a college campus 
-                        which will serve to inspire their future opportunities, increase their motivation to pursue post-secondary 
-                        education and training, and prompt them to start setting goals for their future early, at an age when these 
-                        decisions are critical to their success in life. 
-                        If you see news happening - Send us a Text and we will post it here.</p>
-                
-                </div>
-           
+            
             </div>
         </div>
 
         <div class="row">
-        <div class="col-md-12 botHead">        
-            <div class="head botMZ">
-            <div class="headPadding">    
-            
+            <div class="col-md-12 col-lg-12 navPad">
+
+                <ul class="nav nav-tabs">
+                <li role="presentation"  class="nav-item">
+                <a class="nav-link active" href="/bootWeb/home.php">Home</a>
+                </li>
+                <li role="presentation" class="nav-item">
+                <a class="nav-link" href="/bootWeb/tutor.php">Request Tutoring</a>
+                </li>
+                <li role="presentation"  class="nav-item">
+                <a class="nav-link" href="/bootWeb/enrollment.php">Tutoring Enrollment</a>
+                </li>
+                <li role="presentation"  class="nav-item">
+                <a class="nav-link" href="/bootWeb/search.php">Search</a>
+                </li>
+                </ul>
+
             </div>
-        </div>
+
+
+
+
+            </div>
+                <div class="row no-gutters"> <!--wrapper for main home column-->
+
+                    <div class="col-md-7 col-lg-7">
+                    
+                        <div class="homeMainDiv">
+                            <img class="ajustImg img-fluid img-conf" src="images\students.jpg">
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-md-5 col-lg-5">
+                        <div class="homeSideDiv">
+                            
+                            <p class="lead weeklyT"><strong>Weekly News:</strong></p>
+                            
+                            <p class="small text-center weekly">The Coding in Academics program is sponsored by the Crockett Foundation. 
+                                The program takes tales place at Broward College's North Campus. 
+                                The program serves students from local middle schools and provives coding classes. 
+                                The coding classes are taughtand monitored by a team consisting of Education Specialist, 
+                                and Coding Professors from Broward College. Students benefit from being exposed to a college campus 
+                                which will serve to inspire their future opportunities, increase their motivation to pursue post-secondary 
+                                education and training, and prompt them to start setting goals for their future early, at an age when these 
+                                decisions are critical to their success in life. 
+                                If you see news happening - Send us a Text and we will post it here.</p>
+                        
+                        </div>
+                
+                    </div>
+                </div>
+
+            <div class="row">
+                <div class="col-md-12 botHead">        
+                    <div class="head botMZ">
+                        <div class="headPadding">    
+                        <p class="text-white lead footerTab">&copy;Tutoring Services LLC</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         
-        </div>
+
         
-        
-</div>
+            
+            
+    </div>
 
     
     <!-- Optional JavaScript -->
@@ -79,5 +105,5 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-  </body>
+    </body>
 </html>
