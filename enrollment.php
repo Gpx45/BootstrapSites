@@ -1,10 +1,8 @@
 <!doctype html>
 <html lang="en">
 
-
-
-
 <?php
+session_start();
 
     $lastName = $firstName = $StudentID = $rgDate =
     $email = $selection = $messages = "";

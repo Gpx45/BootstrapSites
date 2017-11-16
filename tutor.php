@@ -1,8 +1,10 @@
+
+<?php
+
+?>
+
 <!doctype html>
 <html lang="en">
-
-
-
 
 <?php
 
@@ -14,6 +16,29 @@
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
+    };
+
+    function error_date_msg(){
+      $err = '<div class="container">
+      <div class="alert alert-danger alert" id="myAlert">
+
+        <strong>I\'m sorry</strong> Please Enter All fields.
+      </div>
+    </div>';
+    return $err;
+    }
+
+    function isItReal($date){
+      if (false === strtotime($date)){
+        return FALSE;
+      }
+      list($year, $month, $date) = explode('-', $date);
+      checkdate($month, $day, $year);
+      if ($year < 2000){
+        echo error_date_msg();
+      }
+      $newDate = checkdate($month, $day, $year);
+      return $newDate;
     };
 
     $lastNameErr = $firstNameErr = $StudentIDErr = $dateErr =
@@ -44,6 +69,8 @@
             $dateErr = "Date Required";
         } else {
             $rgDate = test_input($_POST["rdate"]);
+            $rgDate = isItReal($rgDate);
+
         }
 
         if (empty($_POST["email"])) {
@@ -65,7 +92,6 @@
         }
     }
     ?>
-
 
   <head>
     <title>Welcome to Tutoring</title>
@@ -106,104 +132,105 @@
                 <a class="nav-link active" href="/bootWeb/tutor.php">Request Tutoring</a>
                 </li>
                 <li role="presentation"  class="nav-item">
-                <a class="nav-link" href="/bootWeb/enrollment.php">Tutoring Enrollment</a>
+                <a class="nav-link" href="/bootWeb/enrollment.php" data-toggle="modal" data-target="#loginModal">Tutoring Enrollment</a>
                 </li>
                 <li role="presentation"  class="nav-item">
                 <a class="nav-link" href="/bootWeb/search.php">Search</a>
                 </li>
                 </ul>
-
             </div>
+        </div>
 
-            </div>
 <div class="row no-gutters"> <!--wrapper for main home column-->
 
 <div class="col-md-8 col-lg-8">
-<div class="homeMainDiv2">
-<div class="col-md-9 col-lg-9 ">
-<div>
-<?php
-$date = date('m/d/Y', time());
-?>
-<p class="p-adjust"><b>Yes!</b> I am interested in receiving some
-tutoring. Today's Date: <b><?php echo $date;?></b>
-</p>
+  <div class="homeMainDiv2">
+  <div class="col-md-9 col-lg-9 ">
+  <div>
 
-    <form method="post" action="<?php echo htmlspecialchars
-        ($_SERVER["PHP_SELF"]);?>"
-        target="_self" name="submit-form">
+  <br />
 
-            <div class="form-group">
+  <?php
+  $date = date('m/d/Y', time());
+  ?>
+  <p class="p-adjust"><b>Yes!</b> I am interested in receiving some
+  tutoring. Today's Date: <b><?php echo $date;?></b>
+  </p>
 
-                <div class="col-10">
-                    <input type="text" class="form-control" name="lname"
-                    placeholder="Last Name" pattern="[A-Za-z]*\D*"
-                    title="Please Enter a Alphanumric Name">
-                </div>
-            </div>
+  <form method="post" action="<?php echo htmlspecialchars
+      ($_SERVER["PHP_SELF"]);?>"
+      target="_self" name="submit-form">
 
-            <div class="form-group">
-                <div class="col-10">
-                    <input type="text" class="form-control" name="fname"
-                    placeholder="First Name" pattern="[A-Za-z]*\D*"
-                    title="Please Enter a Alphanumric Name">
-                </div>
-            </div>
+          <div class="form-group">
 
-            <div class="form-group">
-                <div class="col-10">
-                    <input type="text" class="form-control" name="studentID"
-                    placeholder="Student ID" pattern="[A-Z]{1}[0-9]{8}"
-                    title="Please Enter a Capital Letter and 8 Numbers">
-                </div>
-            </div>
+              <div class="col-10">
+                  <input type="text" class="form-control" name="lname"
+                  placeholder="Last Name" pattern="[A-Za-z]*\D*"
+                  title="Please Enter a Alphanumric Name">
+              </div>
+          </div>
 
-            <div class="form-group">
-            <label for="date">When(Enter a date after 2000-01-01): </label>
-                <div class="col-10">
-                    <input type="date" class="form-control" name="rdate">
-                </div>
-            </div>
+          <div class="form-group">
+              <div class="col-10">
+                  <input type="text" class="form-control" name="fname"
+                  placeholder="First Name" pattern="[A-Za-z]*\D*"
+                  title="Please Enter a Alphanumric Name">
+              </div>
+          </div>
 
-            <div class="form-group row side-a-bit">
-                <div class="col-10 ">
-                    <input class="form-control" type="email" placeholder="johndoe@example.com" name="email"
-                    pattern="^([a-zA-Z0-9_\-\.]+)[@]([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]\.(com)(net)(edu)">
-                </div>
-            </div>
+          <div class="form-group">
+              <div class="col-10">
+                  <input type="text" class="form-control" name="studentID"
+                  placeholder="Student ID" pattern="[A-Z]{1}[0-9]{8}"
+                  title="Please Enter a Capital Letter and 8 Numbers">
+              </div>
+          </div>
 
+          <div class="form-group">
+          <label for="date">When(Enter a date after 2000-01-01): </label>
+              <div class="col-10">
+                  <input type="date" class="form-control" name="rdate">
+              </div>
+          </div>
 
-            <label class="mr-sm-2" for="selection">Discipline</label>
-            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="selection">
-                <option selected>Choose...</option>
-                <option value="Algebra">Algebra</option>
-                <option value="Biology">Biology</option>
-                <option value="Calculus">Calculus</option>
-                <option value="Programming">Programming</option>
-            </select>
+          <div class="form-group row side-a-bit">
+              <div class="col-10 ">
+                  <input class="form-control" type="email" placeholder="johndoe@example.com" name="email"
+                  pattern="^([a-zA-Z0-9_\-\.]+)[@]([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]\.(com)(net)(edu)">
+              </div>
+          </div>
 
-            <div class="form-group">
-            <label for="comments">Comments:</label>
-            <textarea class="form-control" rows="5" name="comments"></textarea>
-            </div>
+          <label class="mr-sm-2" for="selection">Discipline</label>
+          <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="selection">
+              <option selected>Choose...</option>
+              <option value="Algebra">Algebra</option>
+              <option value="Biology">Biology</option>
+              <option value="Calculus">Calculus</option>
+              <option value="Programming">Programming</option>
+          </select>
 
-            <hr>
-            <div class="bttnFree">
-            <button type="reset" class="btn btn-outline-danger">CLEAR</button>
-            <button id="submitButton" type="submit" name="submitButton" class="btn btn-outline-primary">Submit</button>
+          <div class="form-group">
+          <label for="comments">Comments:</label>
+          <textarea class="form-control" rows="5" name="comments"></textarea>
+          </div>
 
-            <div id="myAlert" class="alert alert-danger collapse">
-            <a id="linkClose" href="#" class="close">&times;</a>
-            <strong>Error!</strong> There is a problem submitting your form
-            </a>
-            </div>
+          <hr>
+          <div class="bttnFree">
+          <button type="reset" class="btn btn-outline-danger">CLEAR</button>
+          <button id="submitButton" type="submit" name="submitButton" class="btn btn-outline-primary">Submit</button>
 
-        </div>
+          <div id="myAlert" class="alert alert-danger collapse">
+          <a id="linkClose" href="#" class="close">&times;</a>
+          <strong>Error!</strong> There is a problem submitting your form
+          </a>
+          </div>
 
-    </form>
-</div>
-</div>
-</div>
+      </div>
+
+  </form>
+  </div>
+  </div>
+  </div>
 </div>
 
 <div class="col-md-4 col-lg-4">
@@ -225,21 +252,18 @@ its the little pebbie in your shoe." </p>
 </div>
 </div>
 
-            <div class="row">
-                <div class="col-md-12 botHead">
-                    <div class="head botMZ">
-                        <div class="headPadding">
-                        <p class="text-white lead footerTab">&copy;Tutoring Services LLC</p>
-                        </div>
-                    </div>
-                </div>
+<div class="row">
+    <div class="col-md-12 botHead">
+        <div class="head botMZ">
+            <div class="headPadding">
+            <p class="text-white lead footerTab">&copy;Tutoring Services LLC</p>
             </div>
-
-
+        </div>
+    </div>
+</div>
 
 <?php
   include 'db.php';
-
   $Result = @$DBconnect->select_db($dataBase);
   if($Result === FALSE){
   echo "<p>Unable to select the database.</p>",
@@ -277,12 +301,27 @@ its the little pebbie in your shoe." </p>
 ?>
 
 
-
-
-
+<div id=loginModal class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Login</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <label>Username</label>
+        <input type="text" name="username" id="username" class="form-control"/>
+        <br/>
+        <label>Password</label>
+        <input type="text" name="password" id="password" class="form-control"/>
+        <br />
+          <button type="button" name="login_button" id="login_button" class="btn btn-warning">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     </div>
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
