@@ -1,16 +1,20 @@
-
 <?php
-
-?>
+session_start();
+ ?>
 
 <!doctype html>
 <html lang="en">
 
 <?php
 
-    $lastName = $firstName = $StudentID = $rgDate =
-    $email = $selection = $messages = "";
-
+    $lastName = "";
+    $firstName = "";
+    $StudentID = "";
+    $rgDate = "";
+    $email = "";
+    $selection = "";
+    $messages = "";
+    // current test
     function test_input($data) {
         $data = trim($data);
         $data = stripslashes($data);
@@ -18,31 +22,14 @@
         return $data;
     };
 
-    function error_date_msg(){
-      $err = '<div class="container">
-      <div class="alert alert-danger alert" id="myAlert">
 
-        <strong>I\'m sorry</strong> Please Enter All fields.
-      </div>
-    </div>';
-    return $err;
-    }
-
-    function isItReal($date){
-      if (false === strtotime($date)){
-        return FALSE;
-      }
-      list($year, $month, $date) = explode('-', $date);
-      checkdate($month, $day, $year);
-      if ($year < 2000){
-        echo error_date_msg();
-      }
-      $newDate = checkdate($month, $day, $year);
-      return $newDate;
-    };
-
-    $lastNameErr = $firstNameErr = $StudentIDErr = $dateErr =
-    $emailErr = $selectionErr = $messagesErr = "";
+    $lastNameErr = "";
+    $firstNameErr = "";
+    $StudentIDErr = "";
+    $dateErr = "";
+    $emailErr = "";
+    $selectionErr = "";
+    $messagesErr = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["lname"])) {
@@ -69,7 +56,7 @@
             $dateErr = "Date Required";
         } else {
             $rgDate = test_input($_POST["rdate"]);
-            $rgDate = isItReal($rgDate);
+            //$rgDate = isItReal($rgDate);
 
         }
 
@@ -126,16 +113,16 @@
 
                 <ul class="nav nav-tabs">
                 <li role="presentation"  class="nav-item">
-                <a class="nav-link" href="/bootWeb/home.php">Home</a>
+                <a class="nav-link" href="/victorMartinsFinal/home.php">Home</a>
                 </li>
                 <li role="presentation" class="nav-item">
-                <a class="nav-link active" href="/bootWeb/tutor.php">Request Tutoring</a>
+                <a class="nav-link active" href="/victorMartinsFinal/tutor.php">Request Tutoring</a>
                 </li>
                 <li role="presentation"  class="nav-item">
-                <a class="nav-link" href="/bootWeb/enrollment.php" data-toggle="modal" data-target="#loginModal">Tutoring Enrollment</a>
+                <a class="nav-link" href="/victorMartinsFinal/enrollment.php">Tutoring Enrollment</a>
                 </li>
                 <li role="presentation"  class="nav-item">
-                <a class="nav-link" href="/bootWeb/search.php">Search</a>
+                <a class="nav-link" href="/victorMartinsFinal/search.php">Search</a>
                 </li>
                 </ul>
             </div>
@@ -149,6 +136,50 @@
   <div>
 
   <br />
+
+
+
+
+  <?php
+    include 'db.php';
+    $Result = @$DBconnect->select_db($dataBase);
+    if($Result === FALSE){
+    echo "<p>Unable to select the database.</p>",
+    $DBconnect->errno.": " . $DBconnect->error."\n";
+    }
+
+    if(isset($_POST['submitButton'])){
+
+    if(empty($_POST["lname"]) ||
+    empty($_POST["fname"]) ||
+    empty($_POST["studentID"]) ||
+    empty($_POST["rdate"]) ||
+    empty($_POST["email"]) ||
+    empty($_POST["selection"]) ||
+    empty($_POST["comments"])){
+    echo error_msg();
+    }
+    else{
+      $sentData = "INSERT INTO students_t(lastName,
+      firstName, studentID, regDate, email, selection, message)
+      VALUES (\"".$lastName."\",\"".$firstName."\",\"".$StudentID."\"
+      ,\"".$rgDate."\",\"".$email."\",\"".$selection."\",\"".$messages."\")";
+
+      if($DBconnect->query($sentData) === TRUE){
+      $alert_success = '<div class="alert alert-success" role="alert">Success!! You have submitted your registration</div>';
+      echo success_msg();
+      unset($_POST);
+      }
+      else{
+        echo "Error:" . $sentData."<br />".$DBconnect->error;
+        $DBconnect->close();
+        }
+      }
+    }
+  ?>
+
+
+
 
   <?php
   $date = date('m/d/Y', time());
@@ -166,7 +197,8 @@
               <div class="col-10">
                   <input type="text" class="form-control" name="lname"
                   placeholder="Last Name" pattern="[A-Za-z]*\D*"
-                  title="Please Enter a Alphanumric Name">
+                  title="Please Enter a Alphanumric Name"
+                  value="<?php if(isset($_POST['lname'])){echo $_POST['lname'];}?>">
               </div>
           </div>
 
@@ -174,7 +206,8 @@
               <div class="col-10">
                   <input type="text" class="form-control" name="fname"
                   placeholder="First Name" pattern="[A-Za-z]*\D*"
-                  title="Please Enter a Alphanumric Name">
+                  title="Please Enter a Alphanumric Name"
+                  value="<?php if(isset($_POST['fname'])){echo $_POST['fname'];}?>">
               </div>
           </div>
 
@@ -182,27 +215,30 @@
               <div class="col-10">
                   <input type="text" class="form-control" name="studentID"
                   placeholder="Student ID" pattern="[A-Z]{1}[0-9]{8}"
-                  title="Please Enter a Capital Letter and 8 Numbers">
+                  title="Please Enter a Capital Letter and 8 Numbers"
+                  value="<?php if(isset($_POST['studentID'])){echo $_POST['studentID'];}?>">
               </div>
           </div>
 
           <div class="form-group">
           <label for="date">When(Enter a date after 2000-01-01): </label>
               <div class="col-10">
-                  <input type="date" class="form-control" name="rdate">
+                  <input type="date" class="form-control" name="rdate"
+                  value="<?php if(isset($_POST['rdate'])){echo $_POST['rdate'];}?>">
               </div>
           </div>
 
           <div class="form-group row side-a-bit">
               <div class="col-10 ">
                   <input class="form-control" type="email" placeholder="johndoe@example.com" name="email"
-                  pattern="^([a-zA-Z0-9_\-\.]+)[@]([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]\.(com)(net)(edu)">
+                  pattern="^([a-zA-Z0-9_\-\.]+)[@]([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]\.(com)(net)(edu)"
+                  value="<?php if(isset($_POST['email'])){echo $_POST['email'];}?>">
               </div>
           </div>
 
           <label class="mr-sm-2" for="selection">Discipline</label>
           <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="selection">
-              <option selected>Choose...</option>
+              <option disabled selected>Choose...</option>
               <option value="Algebra">Algebra</option>
               <option value="Biology">Biology</option>
               <option value="Calculus">Calculus</option>
@@ -211,7 +247,8 @@
 
           <div class="form-group">
           <label for="comments">Comments:</label>
-          <textarea class="form-control" rows="5" name="comments"></textarea>
+          <textarea class="form-control" rows="5"
+           name="comments"> <?php if (isset($_POST['comments'])) {echo $_POST['comments'];} ?></textarea>
           </div>
 
           <hr>
@@ -219,11 +256,6 @@
           <button type="reset" class="btn btn-outline-danger">CLEAR</button>
           <button id="submitButton" type="submit" name="submitButton" class="btn btn-outline-primary">Submit</button>
 
-          <div id="myAlert" class="alert alert-danger collapse">
-          <a id="linkClose" href="#" class="close">&times;</a>
-          <strong>Error!</strong> There is a problem submitting your form
-          </a>
-          </div>
 
       </div>
 
@@ -233,23 +265,21 @@
   </div>
 </div>
 
-<div class="col-md-4 col-lg-4">
-<div class="homeSideDiv2">
+  <div class="col-md-4 col-lg-4">
+    <div class="homeSideDiv2">
 
-<p class="lead weeklyT down-a-bit"><strong><b>Quote of the day</b></strong></p>
+    <p class="lead weeklyT down-a-bit"><strong><b>Quote of the day</b></strong></p>
+    <blockquote class="blockquote">
+    <p class="small text-center weekly blockquote">
+    "Often it isn't the mountains ahead that wear you out,
+    its the little pebbie in your shoe." </p>
+    <img src="images\ma.jpg" class="img-fluid headPadding">
+    <footer class="blockquote-footer headPadding">Muhammad Ali <cite title="Source Title"></cite></footer>
+    </blockquote>
 
+    </div>
 
-<blockquote class="blockquote">
-<p class="small text-center weekly blockquote">
-"Often it isn't the mountains ahead that wear you out,
-its the little pebbie in your shoe." </p>
-<img src="images\ma.jpg" class="img-fluid headPadding">
-<footer class="blockquote-footer headPadding">Muhammad Ali <cite title="Source Title"></cite></footer>
-</blockquote>
-
-</div>
-
-</div>
+  </div>
 </div>
 
 <div class="row">
@@ -262,66 +292,81 @@ its the little pebbie in your shoe." </p>
     </div>
 </div>
 
-<?php
-  include 'db.php';
-  $Result = @$DBconnect->select_db($dataBase);
-  if($Result === FALSE){
-  echo "<p>Unable to select the database.</p>",
-  $DBconnect->errno.": " . $DBconnect->error."\n";
-  }
-
-  if(isset($_POST['submitButton'])){
-
-  if(empty($_POST["lname"]) ||
-  empty($_POST["fname"]) ||
-  empty($_POST["studentID"]) ||
-  empty($_POST["rdate"]) ||
-  empty($_POST["email"]) ||
-  empty($_POST["selection"]) ||
-  empty($_POST["comments"])){
-  echo error_msg();
-  }
-  else{
-    $sentData = "INSERT INTO students_t(lastName,
-    firstName, studentID, regDate, email, selection, message)
-    VALUES (\"".$lastName."\",\"".$firstName."\",\"".$StudentID."\"
-    ,\"".$rgDate."\",\"".$email."\",\"".$selection."\",\"".$messages."\")";
-
-    if($DBconnect->query($sentData) === TRUE){
-    $alert_success = '<div class="alert alert-success" role="alert">Success!! You have submitted your registration</div>';
-    echo success_msg();
-
-    }
-    else{
-      echo "Error:" . $sentData."<br />".$DBconnect->error;
-      $DBconnect->close();
-      }
-    }
-  }
-?>
 
 
-<div id=loginModal class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Login</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <label>Username</label>
-        <input type="text" name="username" id="username" class="form-control"/>
-        <br/>
-        <label>Password</label>
-        <input type="text" name="password" id="password" class="form-control"/>
-        <br />
-          <button type="button" name="login_button" id="login_button" class="btn btn-warning">Login</button>
+
+  <div id=loginModal class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Login</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <label>Username</label>
+          <input type="text" name="username" id="username" class="form-control"/>
+          <br/>
+          <label>Password</label>
+          <input type="text" name="password" id="password" class="form-control"/>
+          <br />
+            <button type="button" name="login_button" id="login_button" class="btn btn-warning">Login</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-    </div>
+
+
+  <script>
+   $(document).ready(function(){
+        $('#login_button').click(function(){
+             var username = $('#username').val();
+             var password = $('#password').val();
+             if(username != '' && password != '')
+             {
+                  $.ajax({
+                       url:"action.php",
+                       method:"POST",
+                       data: {username:username, password:password},
+                       success:function(data)
+                       {
+                            //alert(data);
+                            if(data == 'No')
+                            {
+                                 alert("Wrong Data");
+                            }
+                            else
+                            {
+                                 $('#loginModal').hide();
+                                 location.reload();
+                            }
+                       }
+                  });
+             }
+             else
+             {
+                  alert("Both Fields are required");
+             }
+        });
+        $('#logout').click(function(){
+             var action = "logout";
+             $.ajax({
+                  url:"action.php",
+                  method:"POST",
+                  data:{action:action},
+                  success:function()
+                  {
+                       location.reload();
+                  }
+             });
+        });
+   });
+   </script>
+
+
+
+
+</div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -1,6 +1,4 @@
 
-
-
   <?php
     $location = "localhost";
     $user = "root";
@@ -15,7 +13,7 @@
             echo "<p>" . $msg . "</p>\n";
 
         };
-        echo success_db();
+
         $DBconnect = @new mysqli("$location",$user,$pass);
 
         $sql = "CREATE DATABASE "."$dataBase";
@@ -40,7 +38,10 @@
 	          admin_name VARCHAR(10),
 	           admin_password VARCHAR(10));";
         $DBconnect->query($sql);
-
+        $sql = "INSERT INTO `admin_login`(admin_name, admin_password)
+        VALUES ('admin','pass')";
+        $DBconnect->query($sql);
+        echo success_db();
 
     }
     else{

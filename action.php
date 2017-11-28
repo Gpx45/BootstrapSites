@@ -1,6 +1,7 @@
 <?php
  session_start();
- $connect = mysqli_connect("localhost", "root", "", "tutoringsite");
+ include 'db.php';
+ $conn = $DBconnect -> connect("localhost", "root", "", "tutoringsite");
  if(isset($_POST["username"]))
  {
       $query = "
@@ -12,11 +13,11 @@
       if(mysqli_num_rows($result) > 0)
       {
            $_SESSION['username'] = $_POST['username'];
-           header("Location: http://localhost/bootWeb/enrollment.php");
+           header("Location: enrollment.php");
       }
       else
       {
-           echo 'No';
+           header("Location: home.php");
       }
  }
  if(isset($_POST["action"]))

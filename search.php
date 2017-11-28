@@ -1,3 +1,7 @@
+<?php 
+session_start();
+ ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -36,16 +40,16 @@ integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfs
     <div class="col-md-12 col-lg-12 navPad clearfix">
         <ul class="nav nav-tabs">
         <li role="presentation"  class="nav-item">
-        <a class="nav-link" href="/bootWeb/home.php">Home</a>
+        <a class="nav-link" href="/victorMartinsFinal/home.php">Home</a>
         </li>
         <li role="presentation" class="nav-item">
-        <a class="nav-link" href="/bootWeb/tutor.php">Request Tutoring</a>
+        <a class="nav-link" href="/victorMartinsFinal/tutor.php">Request Tutoring</a>
         </li>
         <li role="presentation"  class="nav-item">
-        <a class="nav-link" href="/bootWeb/enrollment.php">Tutoring Enrollment</a>
+        <a class="nav-link" href="/victorMartinsFinal/enrollment.php">Tutoring Enrollment</a>
         </li>
         <li role="presentation"  class="nav-item">
-        <a class="nav-link  active" href="/bootWeb/search.php">Search</a>
+        <a class="nav-link  active" href="/victorMartinsFinal/search.php">Search</a>
         </li>
         </ul>
     </div>
